@@ -1,0 +1,25 @@
+#kind -> version
+#POD -> v1
+#Services -> v1
+#ReplicaSet -> apps/v1
+#Deployment -> apps/v1
+#Four main element in one pod definition:
+#apiVersion
+#kind
+#metadata
+#spec (specification)
+apiVersion: v1
+kind: Pod
+metadata:
+  name: myapp-pod
+  labels:
+    app: myapp
+    type: front-end
+spec:
+  containers:
+    - name: nginx-container
+      image: nginx
+#kubectl create -f pod-definition.yml
+#kubectl get pods
+#kubectl describe pod myapp-pod
+ 

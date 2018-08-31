@@ -1,0 +1,43 @@
+#Deployment
+#kind -> version
+#POD -> v1
+#Services -> v1
+#ReplicaSet -> apps/v1
+#Deployment -> apps/v1
+#Four main element in one deployment definition:
+#apiVersion
+#kind
+#metadata
+#spec (specification)
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: myapp-deployment
+  labels:
+    app: myapp
+    type: front-end
+spec:
+  template:
+    metadata:
+      name: myapp-pod
+      labels:
+        app: myapp
+    spec:
+      containers:
+        - name: nginx-container
+          image: nginx:1.7.1
+  replicas: 6
+
+  selector:
+    matchLabels:
+      app: myapp
+#kubectl create -f deployment-definition.yml
+#kubectl get deployments
+#kubectl get replicaset
+#kubectl get pods
+#kubectl get all
+#kubectl describe deployment
+#kubectl rollout status deployment.apps/myapp-deployment
+#kubectl rollout history deployment.apps/myapp-deployment
+#kubectl apply -f deployment-definition.yml (to do any update in .yml)
+#kubectl rollout undo deployment.apps/myapp-deployment (rollback)

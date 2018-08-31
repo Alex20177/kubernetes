@@ -1,0 +1,29 @@
+#kind -> version
+#POD -> v1
+#Services -> v1
+#ReplicaSet -> apps/v1
+#Deployment -> apps/v1
+#Four main element in one pod definition:
+#apiVersion
+#kind
+#metadata
+#spec (specification)
+apiVersion: v1
+kind: Pod
+metadata:
+  name: postgres-pod
+  labels:
+    tier: db-tier
+spec:
+  containers:
+    - name: postgres
+      image: postgres
+      env:
+        - name: POSTGRES_PASSWORD
+          value: mysecretpassword
+        - name: myVar
+          value: Alex
+#kubectl create -f postgres-definition.yml
+#kubectl get pods
+#kubectl describe pod myapp-pod
+#yamllint.com

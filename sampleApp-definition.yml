@@ -1,0 +1,26 @@
+#kind -> version
+#POD -> v1
+#Services -> v1
+#ReplicaSet -> apps/v1
+#Deployment -> apps/v1
+#Four main element in one pod definition:
+#apiVersion
+#kind
+#metadata
+#spec (specification)
+apiVersion: v1
+kind: Pod
+metadata:
+  name: sampleapp-pod
+  labels:
+    app: sampleapp
+    type: front-end-myapp
+spec:
+  containers:
+    - name: sampleapp
+      image: springboottest
+      imagePullPolicy: IfNotPresent
+#kubectl create -f sampleapp-definition.yml
+#kubectl get pods
+#kubectl describe pod myapp-pod
+#yamllint.com

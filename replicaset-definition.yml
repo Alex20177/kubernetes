@@ -1,0 +1,47 @@
+#Replicanset
+#kind -> version
+#POD -> v1
+#Services -> v1
+#ReplicaSet -> apps/v1
+#Deployment -> apps/v1
+#Four main element in one pod definition:
+#apiVersion
+#kind
+#metadata
+#spec (specification)
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: myapp-replicaset
+  labels:
+    app: myapp
+    type: front-end
+spec:
+  template:
+    metadata:
+      name: myapp-pod
+      labels:
+        app: myapp
+        type: front-end
+    spec:
+      containers:
+        - name: nginx-container
+          image: nginx
+  replicas: 3
+  selector:
+    matchLabels:
+      type: front-end-myapp
+#kubectl create -f replicaset-definition.yml
+#kubectl get replicaset
+#kubectl get pods
+#kubectl delete replicaset myapp-replicaset
+
+#Scale
+#Option 1:  change the replicas value to six or other higher number
+#kubectl replace -f replicaset-definition.yml update config
+
+#Option 2:
+#kubectl scale --replicas=6 -f replicaset-definition.yml
+
+#Option 3:
+#kubectl scale --replicas=6 replicaset myapp-replicaset
