@@ -1,0 +1,29 @@
+#Deployment
+#kind -> version
+#POD -> v1
+#Services -> v1
+#ReplicaSet -> apps/v1
+#Deployment -> apps/v1
+#Four main element in one deployment definition:
+#apiVersion
+#kind
+#metadata
+#spec (specification)
+apiVersion: v1
+kind: Service
+
+metadata:
+  name: sampleapp-services
+
+spec:
+  type: NodePort
+  ports:
+    - targetPort: 8080
+      port: 81
+      nodePort: 30007
+  selector:
+    app: sampleapp
+    #type: front-end
+#kubectl create -f services-definition.yml
+#kubectl apply -f services-definition.yml
+#kubectl get all
